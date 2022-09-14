@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Event Contract CI/CD
-      uses: projectronin/github/.github/workflows/image_push_nexus.yml@event_contract_cicd
+      uses: projectronin/github/.github/workflows/event_contract_cicd.yml@event_contract_cicd
       with:
         schema_name: ronin-contract-event-template
         publish: ${{ github.ref == 'refs/heads/main' }}
