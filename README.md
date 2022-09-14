@@ -26,3 +26,4 @@ This contains a simple `Makefile` for automating validation and document generat
 - [Ronin Event Standard](https://projectronin.atlassian.net/wiki/spaces/ENG/pages/1748041738/Ronin+Event+Standard)
 - [Event Topic Standards](https://projectronin.atlassian.net/wiki/spaces/ENG/pages/1765998701/Event+Topic+Standards)
 
+REMOVE
