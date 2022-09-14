@@ -1,6 +1,6 @@
-# Event Contracts for <TBD>
+# Event Contract Template
 
-# <TBD> Scope
+# Scope
 Describe what types of data are included in this schema and how they should be interpreted. This description is valuable to get alignment between the Producers and Consumers about what we intend to message. 
 
 # Initial Setup
