@@ -1,0 +1,21 @@
+name: Event Contract CI/CD
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+
+  build_and_test:
+    name: build_and_test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Event Contract CI/CD
+      uses: projectronin/github/.github/workflows/image_push_nexus.yml@event_contract_cicd
+      with:
+        schema_name: ronin-contract-event-template
+        publish: ${{ github.ref == 'refs/heads/main' }}
