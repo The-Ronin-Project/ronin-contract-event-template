@@ -17,7 +17,7 @@ Describe what types of data are included in this schema and how they should be i
 ** This can be removed when you have actual files. This is defined here to assit the initial author.**
 
 ## Boilerplate to update
-- [] Choose the name of the contract. This should be the suffix of the topic name minus the version. This is based on the naming strategy defined in the [Events Topic Standard](https://projectronin.atlassian.net/wiki/spaces/ENG/pages/1765998701/Event+Topic+Standards)
+- [ ] Choose the name of the contract. This should be the suffix of the topic name minus the version. This is based on the naming strategy defined in the [Events Topic Standard](https://projectronin.atlassian.net/wiki/spaces/ENG/pages/1765998701/Event+Topic+Standards)
 - [ ] Replace `ronin-contract-event-template` with the contract name in the following places:
   - [ ] `v1/ronin-contract-event-template.schema.json`
   - [ ] `.github/workflows/cicd.yaml`
