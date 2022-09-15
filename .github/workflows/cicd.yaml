@@ -10,7 +10,7 @@ on:
 jobs:
   build_and_test:
     name: build_and_test
-    uses: projectronin/github/.github/workflows/event_contract_cicd.yaml@event_contract_cicd
+    uses: projectronin/github/.github/workflows/event_contract_cicd.yaml@event_contract_cicd_pr
     with:
       schema_name: ronin-contract-event-template
       publish: ${{ github.ref == 'refs/heads/main' }}
