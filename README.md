@@ -9,15 +9,15 @@ Describe what types of data are included in this schema and how they should be i
 ```
 <schema_repo_root>/
 |- .github/workflows/cicd.yaml              # Simple Github Actions workflow that leverages a 
-                                            # shared workflow for all event contracts
+|                                           # shared workflow for all event contracts
 |- .gitignore                               # Exclude the docs and build directories
 |- README.md                                # This file
 |- Makefile                                 # Simple makefile for test/clean/doc. Uses a docker 
-                                            # image for the logic. See link below
+|                                           # image for the logic. See link below
 |- v1/                                      # Directory for each major version
   |- <schema_name>-v1.schema.json           # The contract schema
   |- examples/
-    |- <example_name>.json                  # example payloads that conforms to the schema
+  |- <example_name>.json                  # example payloads that conforms to the schema
   |- docs/                                  # Generated documentation from the schema 
 ```
 **This can be removed when you have actual files. This is defined here to assit the initial author.**
