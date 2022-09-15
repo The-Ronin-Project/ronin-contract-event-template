@@ -8,4 +8,3 @@ doc:
 
 clean: 
 	docker run -it -v "$$PWD:/app" $(DOCKER_IMAGE) contract-tools clean
-
