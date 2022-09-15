@@ -15,5 +15,7 @@ jobs:
       schema_name: ronin-contract-event-template
       publish: ${{ github.ref == 'refs/heads/main' }}
     secrets:
-      username: ${{ secrets.NEXUS_DOCKER_USERNAME }}
-      password: ${{ secrets.NEXUS_DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.NEXUS_DOCKER_USERNAME }}
+      docker_password: ${{ secrets.NEXUS_DOCKER_PASSWORD }}
+      nexus_username: ${{ secrets.NEXUS_RAW_USER }}
+      nexus_token: ${{ secrets.NEXUS_RAW_TOKEN }}
