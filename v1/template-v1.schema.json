@@ -71,7 +71,7 @@
         },
         "resourceVersion": {
           "type": "string",
-          "description": "An monotonically incrementing version used for orderiung representations"
+          "description": "An monotonically incrementing version used for ordering representations"
         },
         "subObject": {
           "$ref": "#/$defs/reusedSchema",
