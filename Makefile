@@ -1,4 +1,4 @@
-DOCKER_IMAGE=docker-repo.devops.projectronin.io/ronin-contract-event-tooling:v1
+DOCKER_IMAGE=docker-proxy.devops.projectronin.io/ronin-contract-event-tooling:v1
 
 test:
 	docker run -it -v "$$PWD:/app" $(DOCKER_IMAGE) contract-tools test
