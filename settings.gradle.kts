@@ -1,4 +1,4 @@
-rootProject.name = "contract-messaging-document-data"
+rootProject.name = "ronin-contract-event-template"
 
 pluginManagement {
     plugins {
