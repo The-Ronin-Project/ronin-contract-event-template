@@ -10,7 +10,7 @@ on:
 jobs:
   build_and_test:
     name: build_and_test
-    uses: projectronin/github/.github/workflows/event_contract_cicd.yaml@feature/update-event-workflow-to-gradle
+    uses: projectronin/github/.github/workflows/event_contract_cicd_gradle.yaml@feature/update-event-workflow-to-gradle
     secrets:
       nexus_user:      ${{ secrets.NEXUS_MAVEN_USER }}
       nexus_token:     ${{ secrets.NEXUS_MAVEN_TOKEN }}
