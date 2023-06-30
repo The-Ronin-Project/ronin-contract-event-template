@@ -2,7 +2,9 @@ name: Event Contract CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - v*
     tags:
       - 'v*.*.*'
   pull_request:
