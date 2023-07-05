@@ -16,5 +16,5 @@ jobs:
       - name: test and build
         uses: projectronin/github/.github/actions/json-contract-cicd-gradle@feature/update-event-workflow-to-gradle
         with:
-          nexus_token: ${{ secrets.NEXUS_MAVEN_USER }}
-          nexus_user: ${{ secrets.NEXUS_MAVEN_TOKEN }}
+          nexus_token: ${{ secrets.nexus_user }}
+          nexus_user: ${{ secrets.nexus_token }}
