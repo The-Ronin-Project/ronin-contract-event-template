@@ -14,4 +14,4 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: test and build
-        uses: projectronin/github/.github/actions/json_contract_cicd_gradle.yaml@feature/update-event-workflow-to-gradle
+        uses: projectronin/github/.github/actions/json-contract-cicd-gradle@feature/update-event-workflow-to-gradle
