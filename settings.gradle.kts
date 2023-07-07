@@ -2,7 +2,7 @@ rootProject.name = "ronin-contract-event-template"
 
 pluginManagement {
     plugins {
-        id("com.projectronin.json.contract") version "2.0.0-feature-code-generation-SNAPSHOT"
+        id("com.projectronin.json.contract") version "2.0.0-feature-new-version-new-standards-SNAPSHOT"
     }
 
     repositories {
