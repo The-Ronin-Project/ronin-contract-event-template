@@ -1,3 +1,3 @@
 plugins {
-    id("com.projectronin.json.contract")
+    alias(roningradle.plugins.ronin.json.contract)
 }
