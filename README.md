@@ -1,42 +1,79 @@
-# Event Contract Template
+# contract project name here
 
-# Scope
-Describe what types of data are included in this schema and how they should be interpreted. This description is valuable to get alignment between the Producers and Consumers about what we intend to message. 
+This project holds json contract (e.g. events, messaging, json storage, redis cache, etc.).  See the `ronin-contract-json-tooling` repository for more information.
 
-# Initial Setup
+To use this plugin, include the following in your plugins section of the Gradle build file:
 
-## Example Directory Structure
+## Layout
+
+This plugin makes several assumptions about the format of the consuming project.
+
+* The project will have only a single version of the schema to process
+* The schema files will be located in `src/main/resources/schemas`, and only primary schema files will be located in that directory.
+* Schema files will be named `{name}.schema.json`
+* Schema files referenced in those main schema files will be in a subdirectory of `src/main/resources/schemas`
+* Versioning will be done based on tags.  E.g. `v1.0.0`
+
+The plugin will, when the normal gradle tasks are run (e.g. `build` or `assemble` or `publishToMavenLocal`), run the normal lifecycle tasks.  It will download schema dependencies, create a
+tar file of the schema contents, publish that tar file to a maven repo, etc.  It will also generate a java library from the schema using jsonschema2pojo.  Both the tar and the jar file with
+the java classes will be published to maven under the indicated version.  The artifact id of the published artifact will _also_ have a version suffix (without this you couldn't consume
+more than one version of the dependency in a project).
+
+## Tasks
+
+### testContracts
+
+The `testContracts` (or just `check`) task will validate the project's schemas and test them against any provided example files.  Examples must be located in `src/test/resources/examples`.  If there
+is only a single primary schema file, then all examples will be tested against it.  If there are multiple primary schema files, the main name of that schema file is assumed to prefix
+applicable examples.
+
+For example, for this layout, all examples are tested against the listed schema.
+
+    .
+    ├── src/main/resources/schemas
+    │   └── my-schema-v1.schema.json
+    ├── src/test/resources/examples
+    │   ├── example1.json
+    │   └── example2.json
+
+But in this example, `my-schema-example.json` is tested against `my-schema-v2.schema.json`, and `my-other-schema-example1.json` and `my-other-schema-example2.json` are tested
+against `my-other-schema-v2.schema.json`.
+
+    .
+    ├── src/main/resources/schemas
+    │   ├── my-other-schema-v2.schema.json
+    │   └── my-schema-v2.schema.json
+    ├── src/test/resources/examples
+    │   ├── my-other-schema-example1.json
+    │   ├── my-other-schema-example2.json
+    │   └── my-schema-example.json
+
+### generateContractDocs
+
+The `generateContractDocs` task uses the Docker image built by the parent project to generate documentation for all schemas
+in a `docs` folder within each version folder.
+
+### clean
+
+Deletes all project outputs and temporary files
+
+### createSchemaTar
+
+Run when `assemble` is used, creates a tar file with just the schemas.
+
+### downloadSchemaDependencies
+
+Downloads schema dependencies.  See below
+
+# Dependencies
+
+You may use other schema files as dependencies of this one.  In your `build.gradle.kts` file, you can do something like the following:
+
+```kotlin
+dependencies {
+    schemaDependency("com.projectronin.contract.json:<some artifact id>-v<some major version>:<some version>:schemas@tar.gz")
+}
 ```
-<schema_repo_root>/
-|- .github/workflows/cicd.yaml              # Simple Github Actions workflow that leverages a 
-|                                           # shared workflow for all event contracts
-|- .gitignore                               # Exclude the docs and build directories
-|- README.md                                # This file
-|- Makefile                                 # Simple makefile for test/clean/doc. Uses a docker 
-|                                           # image for the logic. See link below
-|- v1/                                      # Directory for each major version
-  |- <schema_name>-v1.schema.json           # The contract schema
-  |- examples/
-  |- <example_name>.json                  # example payloads that conforms to the schema
-  |- docs/                                  # Generated documentation from the schema 
-```
-**This can be removed when you have actual files. This is defined here to assit the initial author.**
 
-## Boilerplate to update
-- [ ] Choose the name of the contract. This should be the suffix of the topic name minus the version. This is based on the naming strategy defined in the [Events Topic Standard](https://projectronin.atlassian.net/wiki/spaces/ENG/pages/1765998701/Event+Topic+Standards). Example: `emr-patient`
-- [ ] Replace `ronin-contract-event-template` with the contract name in the following places:
-  - [ ] `v1/ronin-contract-event-template.schema.json`
-  - [ ] `.github/workflows/cicd.yaml`
-
-# Usage
-This contains a simple `Makefile` for automating validation and document generation.  
-- `make test`: Validate each versioned schema against all of its example files.
-- `make doc`: Compile human readable HTML documentation for each versioned schema
-- `make clean`: Cleans up all generated files
-
-# Links
-- [Event Contract Management Standard](https://projectronin.atlassian.net/wiki/spaces/ENG/pages/1797521454/Event+Contract+Management+Standard)
-- [Ronin Event Standard](https://projectronin.atlassian.net/wiki/spaces/ENG/pages/1748041738/Ronin+Event+Standard)
-- [Event Topic Standards](https://projectronin.atlassian.net/wiki/spaces/ENG/pages/1765998701/Event+Topic+Standards)
-- [Event Contract Tooling Docker Image](https://github.com/projectronin/ronin-contract-event-tooling)
-- [Event Contract CI/CD Workflow](https://github.com/projectronin/github/blob/event_contract_cicd/.github/workflows/event_contract_cicd.yaml)
+When you do this, and then run `./gradlew downloadSchemaDependencies`, the named dependencies are downloaded and unzipped under `src/main/resources/schemas/.dependencies/<artifactid>`.  You
+can then reference those schemas from yours, and they schemas and final classes will be included in the final jar/tar.
