@@ -1,6 +1,6 @@
 # contract project name here
 
-This project holds json contract (e.g. events, messaging, json storage, redis cache, etc.).  See the `ronin-contract-json-plugin` repository for more information.
+This project holds json contract (e.g. events, messaging, json storage, redis cache, etc.).  See the [ronin-contract-json-plugin](https://github.com/projectronin/ronin-gradle/tree/main/gradle-plugins/ronin-contract-json-plugin) repository for more information.
 
 To use this plugin, include the following in your plugins section of the Gradle build file:
 
