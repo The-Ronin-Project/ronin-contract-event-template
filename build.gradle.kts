@@ -1,3 +1,3 @@
 plugins {
-    alias(roningradle.plugins.ronin.json.contract)
+    alias(roningradle.plugins.json.contract)
 }
